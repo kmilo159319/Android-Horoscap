@@ -21,7 +21,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isDebuggable = false
             isMinifyEnabled = false
             proguardFiles(
@@ -30,8 +30,9 @@ android {
             )
             resValue("string","johanName","Horoscapp")
             buildConfigField("String","BASE_URL","\"https://newastro.vercel.app/\"")
+            signingConfig = signingConfigs.getByName("debug")
         }
-        getByName("debug"){
+        debug{
             isDebuggable = true
             resValue("string","johanName","[DEBUG] Horoscapp")
             buildConfigField("String","BASE_URL","\"https://newastro-debug.vercel.app/\"")
@@ -55,6 +56,7 @@ dependencies {
 
     implementation(libs.androidx.activity)
     val navVersion = "2.7.7"
+    val cameraVersion = "1.2.3"
 
     //NavComponent
 
@@ -72,6 +74,13 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.3.1")
+
+    //Camera X
+    implementation ("androidx.camera:camera-core:${cameraVersion}")
+    implementation ("androidx.camera:camera-camera2:${cameraVersion}")
+    implementation ("androidx.camera:camera-lifecycle:${cameraVersion}")
+    implementation ("androidx.camera:camera-view:${cameraVersion}")
+    implementation ("androidx.camera:camera-extensions:${cameraVersion}")
 
 
     implementation(libs.androidx.core.ktx)
